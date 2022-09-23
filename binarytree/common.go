@@ -14,7 +14,19 @@ func (n *Node) String() string {
 	return fmt.Sprintf("%v", n.Val)
 }
 
-func (n *Node) TraversePrint()
+//VerticalPrint print binary tree vertically
+func (n *Node) VerticalPrint() {
+	verticalPrint(n, " ", []string{})
+}
+
+func verticalPrint(node *Node, delimiter string, indnt []string) {
+	if node == nil {
+		return
+	}
+	verticalPrint(node.Right, "", indnt)
+	fmt.Println(indnt, node.String())
+	verticalPrint(node.Left, " ", indnt)
+}
 
 /*
 遍历框架，前中后序是遍历二叉树过程中处理每一个节点的三个特殊时间点：
