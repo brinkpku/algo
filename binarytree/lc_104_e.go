@@ -15,24 +15,25 @@ func lc104maxDepth(root *Node) int {
 	return utils.MaxInt(leftDepth, rightDepth) + 1
 }
 
-var (
-	lc104depth = 0
-	lc104      = 0
-)
-
 // maxDepth2 遍历解法
 func lc104maxDepth2(root *Node) int {
+	depth := 0
+	res := 0
+	lc104traverse(root, &depth, &res)
+	return res
+}
+
+func lc104traverse(root *Node, depth, storeRes *int) {
 	if root == nil {
-		return lc104
+		return
 	}
-	// preorder
-	lc104depth++
-	lc104maxDepth2(root.Left)
-	lc104maxDepth2(root.Right)
-	// postorder
+	//preorder
+	*depth++
+	lc104traverse(root.Left, depth, storeRes)
+	lc104traverse(root.Right, depth, storeRes)
+	//postorder
 	if root.Left == nil && root.Right == nil { //可以只在叶节点更新
-		lc104 = utils.MaxInt(lc104, lc104depth)
+		*storeRes = utils.MaxInt(*storeRes, *depth)
 	}
-	lc104depth--
-	return lc104
+	*depth--
 }
