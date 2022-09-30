@@ -10,18 +10,6 @@ func TestBinaryTree(t *testing.T) {
 	type args struct {
 		nodes []*Node
 	}
-	a := &Node{
-		Val: "a",
-	}
-	b := &Node{
-		Val: "b",
-	}
-	c := &Node{
-		Val: "c",
-	}
-	d := &Node{
-		Val: "d",
-	}
 	tests := []struct {
 		name        string
 		args        args
@@ -46,5 +34,19 @@ func TestBinaryTree(t *testing.T) {
 			}
 		})
 		cleanNodesConnection(a, b, c, d)
+	}
+}
+
+func TestNode_VerticalPrint(t *testing.T) {
+	tests := []struct {
+		name string
+		root *Node
+	}{
+		{name: "print full tree", root: fullTree},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			tt.root.VerticalPrint()
+		})
 	}
 }

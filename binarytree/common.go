@@ -1,7 +1,10 @@
 //Package binarytree binary tree common struct and functions
 package binarytree
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // Node binary tree node
 type Node struct {
@@ -10,22 +13,51 @@ type Node struct {
 	Val   interface{}
 }
 
+type Position int
+
+const (
+	//root node
+	RootPos Position = iota
+	//left sub tree
+	LeftPos
+	//right sub tree
+	RightPos
+)
+
 func (n *Node) String() string {
 	return fmt.Sprintf("%v", n.Val)
 }
 
 //VerticalPrint print binary tree vertically
 func (n *Node) VerticalPrint() {
-	verticalPrint(n, " ", []string{})
+	verticalPrint(n, RootPos, []string{})
 }
 
-func verticalPrint(node *Node, delimiter string, indnt []string) {
+//verticalPrint
+func verticalPrint(node *Node, pos Position, indnt []string) {
 	if node == nil {
 		return
 	}
-	verticalPrint(node.Right, "", indnt)
-	fmt.Println(indnt, node.String())
-	verticalPrint(node.Left, " ", indnt)
+	//preorder
+	var (
+		rindnt []string
+		lindnt []string
+	)
+	if pos == RootPos {
+		rindnt = append(indnt, "    ")
+		lindnt = append(indnt, "    ")
+	} else if pos == RightPos {
+		rindnt = append(indnt, "    ")
+		lindnt = append(indnt, "|   ")
+	} else {
+		rindnt = append(indnt, "|   ")
+		lindnt = append(indnt, "    ")
+	}
+	verticalPrint(node.Right, RightPos, rindnt)
+	//midorder
+	indnt = append(indnt, "|->")
+	fmt.Println(strings.Join(indnt, ""), node.String())
+	verticalPrint(node.Left, LeftPos, lindnt)
 }
 
 /*
