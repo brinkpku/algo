@@ -2,13 +2,13 @@ package binarytree
 
 // https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/
 
-func lc144preorderTraversal(root *Node) []interface{} {
+func lc144preorderTraversal(root *TreeNode) []interface{} {
 	res := make([]interface{}, 0)
 	lc144traverse(root, &res)
 	return res
 }
 
-func lc144traverse(root *Node, res *[]interface{}) {
+func lc144traverse(root *TreeNode, res *[]interface{}) {
 	if root == nil {
 		return
 	}

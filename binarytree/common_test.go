@@ -1,4 +1,4 @@
-//Package binarytree binary tree common struct and functions
+// Package binarytree binary tree common struct and functions
 package binarytree
 
 import (
@@ -8,19 +8,19 @@ import (
 
 func TestBinaryTree(t *testing.T) {
 	type args struct {
-		nodes []*Node
+		nodes []*TreeNode
 	}
 	tests := []struct {
 		name        string
 		args        args
-		wantRoot    *Node
+		wantRoot    *TreeNode
 		wantErr     bool
 		detailCheck bool
 	}{
 		{name: "empty tree", args: args{}, wantRoot: nil},
-		{name: "simple one node", args: args{nodes: []*Node{a}}, wantRoot: a},
-		{name: "abcd tree", args: args{[]*Node{a, b, nil, c, nil, d}}, wantRoot: a},
-		{name: "invalid tree nodes", args: args{[]*Node{a, nil, nil, b}}, wantErr: true},
+		{name: "simple one node", args: args{nodes: []*TreeNode{a}}, wantRoot: a},
+		{name: "abcd tree", args: args{[]*TreeNode{a, b, nil, c, nil, d}}, wantRoot: a},
+		{name: "invalid tree nodes", args: args{[]*TreeNode{a, nil, nil, b}}, wantErr: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -40,7 +40,7 @@ func TestBinaryTree(t *testing.T) {
 func TestNode_VerticalPrint(t *testing.T) {
 	tests := []struct {
 		name string
-		root *Node
+		root *TreeNode
 	}{
 		{name: "print full tree", root: fullTree},
 	}

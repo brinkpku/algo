@@ -2,10 +2,10 @@ package binarytree
 
 // https://leetcode.cn/problems/diameter-of-binary-tree/
 
-func diameterOfBinaryTree(root *Node) int {
+func diameterOfBinaryTree(root *TreeNode) int {
 	ans := 0
-	var maxDepth func(n *Node) int
-	maxDepth = func(n *Node) int {
+	var maxDepth func(n *TreeNode) int
+	maxDepth = func(n *TreeNode) int {
 		if n == nil {
 			return 0
 		}

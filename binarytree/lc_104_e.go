@@ -4,8 +4,8 @@ package binarytree
 
 import "github.com/brinkpku/algo/utils"
 
-//maxDepth 分解子问题解法
-func lc104maxDepth(root *Node) int {
+// maxDepth 分解子问题解法
+func lc104maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -16,14 +16,14 @@ func lc104maxDepth(root *Node) int {
 }
 
 // maxDepth2 遍历解法
-func lc104maxDepth2(root *Node) int {
+func lc104maxDepth2(root *TreeNode) int {
 	depth := 0
 	res := 0
 	lc104traverse(root, &depth, &res)
 	return res
 }
 
-func lc104traverse(root *Node, depth, storeRes *int) {
+func lc104traverse(root *TreeNode, depth, storeRes *int) {
 	if root == nil {
 		return
 	}
