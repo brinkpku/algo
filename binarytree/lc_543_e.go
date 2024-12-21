@@ -2,28 +2,20 @@ package binarytree
 
 // https://leetcode.cn/problems/diameter-of-binary-tree/
 
-func lc543diameterOfBinaryTree(root *Node) int {
-	if root == nil {
-		return 0
+func diameterOfBinaryTree(root *Node) int {
+	ans := 0
+	var maxDepth func(n *Node) int
+	maxDepth = func(n *Node) int {
+		if n == nil {
+			return 0
+		}
+		l := maxDepth(n.Left)
+		r := maxDepth(n.Right)
+		depth := max(l, r) + 1
+		// 求最大深度的时候已经知道了左右子树的深度
+		ans = max(ans, l+r)
+		return depth
 	}
-	maxDiameter := 0
-	lc543maxDepth(root, &maxDiameter)
-	return maxDiameter
-}
-
-func lc543maxDepth(root *Node, diam *int) int {
-	if root == nil {
-		return 0
-	}
-	leftDepth := lc543maxDepth(root.Left, diam)
-	rightDepth := lc543maxDepth(root.Right, diam)
-	*diam = lc543max(*diam, leftDepth+rightDepth)
-	return lc543max(leftDepth, rightDepth) + 1
-}
-
-func lc543max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	maxDepth(root)
+	return ans
 }

@@ -1,4 +1,4 @@
-//Package binarytree binary tree common struct and functions
+// Package binarytree binary tree common struct and functions
 package binarytree
 
 import (
@@ -28,12 +28,12 @@ func (n *Node) String() string {
 	return fmt.Sprintf("%v", n.Val)
 }
 
-//VerticalPrint print binary tree vertically
+// VerticalPrint print binary tree vertically
 func (n *Node) VerticalPrint() {
 	verticalPrint(n, RootPos, []string{})
 }
 
-//verticalPrint
+// verticalPrint
 func verticalPrint(node *Node, pos Position, indnt []string) {
 	if node == nil {
 		return
@@ -61,7 +61,7 @@ func verticalPrint(node *Node, pos Position, indnt []string) {
 }
 
 /*
-遍历框架，前中后序是遍历二叉树过程中处理每一个节点的三个特殊时间点：
+dfs遍历框架，前中后序是遍历二叉树过程中处理每一个节点的三个特殊时间点：
 前序位置的代码在刚刚进入一个二叉树节点的时候执行；
 后序位置的代码在将要离开一个二叉树节点的时候执行；
 中序位置的代码在一个二叉树节点左子树都遍历完，即将开始遍历右子树的时候执行。
@@ -77,7 +77,38 @@ func traverse(root *Node) {
 	// postorder code
 }
 
-//BinaryTree 贪心方式构造二叉树
+/*
+bfs遍历框架，利用队列，并记录层数。
+*/
+func levelOrderTraverse(root *Node) {
+	if root == nil {
+		return
+	}
+	q := []*Node{root}
+	// 记录当前遍历到的层数（根节点视为第 1 层）
+	depth := 1
+	for len(q) > 0 {
+		// 获取当前队列长度
+		sz := len(q)
+		for i := 0; i < sz; i++ {
+			// 弹出队列头
+			cur := q[0]
+			q = q[1:]
+			// 访问 cur 节点，同时知道它所在的层数
+			fmt.Printf("depth = %d, val = %d\n", depth, cur.Val)
+			// 把 cur 的左右子节点加入队列
+			if cur.Left != nil {
+				q = append(q, cur.Left)
+			}
+			if cur.Right != nil {
+				q = append(q, cur.Right)
+			}
+		}
+		depth++
+	}
+}
+
+// BinaryTree 贪心方式构造二叉树
 func BinaryTree(nodes ...*Node) (root *Node, err error) {
 	if len(nodes) == 0 {
 		return
@@ -110,7 +141,7 @@ func BinaryTree(nodes ...*Node) (root *Node, err error) {
 	return
 }
 
-//cleanNodesConnection clean tree node connection
+// cleanNodesConnection clean tree node connection
 func cleanNodesConnection(nodes ...*Node) {
 	for _, node := range nodes {
 		if node != nil {
