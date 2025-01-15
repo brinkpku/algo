@@ -1,10 +1,10 @@
 package binarytree
 
 var (
-	a  = &TreeNode{Val: "a"}
-	b  = &TreeNode{Val: "b"}
-	c  = &TreeNode{Val: "c"}
-	d  = &TreeNode{Val: "d"}
+	a  = &TreeNode{Val: int('a')}
+	b  = &TreeNode{Val: int('b')}
+	c  = &TreeNode{Val: int('c')}
+	d  = &TreeNode{Val: int('d')}
 	n1 = &TreeNode{Val: 1}
 	n2 = &TreeNode{Val: 2}
 	n3 = &TreeNode{Val: 3}

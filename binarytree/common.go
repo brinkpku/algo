@@ -10,7 +10,7 @@ import (
 type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
-	Val   interface{}
+	Val   int
 }
 
 type Position int

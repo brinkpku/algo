@@ -23,11 +23,11 @@ func pathSum1(root *TreeNode, targetSum int) int {
 	if root == nil {
 		return 0
 	}
-	return pathSum(root.Left, targetSum) + countPath(root, targetSum) + pathSum(root.Right, targetSum)
+	return pathSum_(root.Left, targetSum) + countPath(root, targetSum) + pathSum_(root.Right, targetSum)
 }
 
 // 前缀和+dfs遍历
-func pathSum(root *TreeNode, targetSum int) int {
+func pathSum_(root *TreeNode, targetSum int) int {
 	var traverse func(*TreeNode)
 	ans := 0
 	sum := 0
