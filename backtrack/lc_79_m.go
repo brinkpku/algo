@@ -1,5 +1,6 @@
 package backtrack
 
+// 棋盘搜索回溯遍历
 func exist(board [][]byte, word string) bool {
 	var backtrack func(row, col, k int)
 	ans := false
