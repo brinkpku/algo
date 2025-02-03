@@ -19,6 +19,7 @@ func search(nums []int, target int) int {
 			right = mid - 1
 		}
 	}
+	// 如果返回left，则为插入点
 	return -1
 }
 
