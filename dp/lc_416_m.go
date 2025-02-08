@@ -33,3 +33,25 @@ func canPartition(nums []int) bool {
 	}
 	return dfs(len(nums)-1, sum/2)
 }
+
+// 自底向上，dp table
+func canPartition2(nums []int) bool {
+	sum := 0
+	for i := range nums {
+		sum += nums[i]
+	}
+	if sum%2 != 0 {
+		return false
+	}
+	dp := make([][]bool, len(nums)+1)
+	for i := range dp {
+		dp[i] = make([]bool, sum/2+1)
+	}
+	dp[0][0] = true
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j <= sum/2; j++ {
+			dp[i+1][j] = j >= nums[i] && dp[i][j-nums[i]] || dp[i][j]
+		}
+	}
+	return dp[len(nums)][sum/2]
+}
