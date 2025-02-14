@@ -89,3 +89,26 @@ func numSquares3(n int) int {
 	}
 	return mem[downSqrt][n]
 }
+
+// bfs
+func numSquares4(n int) int {
+	q := []int{n}
+	depth := 0
+	set := map[int]struct{}{}
+	for len(q) != 0 {
+		for sz := len(q); sz > 0; sz-- {
+			if q[0] == 0 {
+				return depth
+			}
+			for i := 1; i*i <= q[0]; i++ {
+				if _, ok := set[q[0]-i*i]; !ok {
+					q = append(q, q[0]-i*i)
+					set[q[0]-i*i] = struct{}{}
+				}
+			}
+			q = q[1:]
+		}
+		depth++
+	}
+	return depth
+}
