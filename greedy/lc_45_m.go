@@ -44,3 +44,21 @@ func jump2(nums []int) int {
 	}
 	return dp[len(nums)-1]
 }
+
+// 贪心做法
+func jump3(nums []int) int {
+	ans := 0
+	maxJump := 0
+	end := 0
+	for i := range nums {
+		if end >= len(nums)-1 {
+			break
+		}
+		maxJump = max(nums[i]+i, maxJump)
+		if i == end {
+			ans++
+			end = maxJump
+		}
+	}
+	return ans
+}
