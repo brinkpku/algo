@@ -1,4 +1,4 @@
-package linklist
+package array
 
 func rotate(nums []int, k int) {
 	k %= len(nums)
