@@ -2,12 +2,7 @@ package array
 
 import (
 	"math/rand"
-	"time"
 )
-
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
 
 func findKthLargest(nums []int, k int) int {
 	return quickSelect(nums, 0, len(nums)-1, k)
